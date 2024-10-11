@@ -1,0 +1,228 @@
+---
+---
+title: "RWorksheet_calvario#2.R."
+author: "Jolien"
+date: "2024-09-25"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# 1. Create a vector using : operator
+# a. Sequence from -5 to 5.
+```{r}
+vector_a <- -5:5
+print(vector_a)
+```
+
+# b. x <- 1:7. What will be the value of x?
+```{r}
+x <- 1:7
+print(x)
+```
+
+# 2. 
+# a. seq(1, 3, by=0.2) # specify step size
+```{r}
+# Creating a vector using seq() function
+vector_a <- seq(1, 3, by=0.2)
+print(vector_a)
+```
+
+# 3.
+```{r}
+ages <- c(34, 28, 22, 36, 27, 18, 52, 39, 42, 29, 
+          35, 31, 27, 22, 37, 34, 19, 20, 57, 49, 
+          50, 37, 46, 25, 17, 37, 43, 53, 41, 51, 
+          35, 24, 33, 41, 53, 40, 18, 44, 38, 41, 
+          48, 27, 39, 19, 30, 61, 54, 58, 26, 18)
+```
+
+
+# a. Access 3rd element, what is the value?'
+```{r}
+third_element <- ages[3]
+print(third_element)
+```
+
+# b. Access 2nd and 4th element, what are the values?
+```{r}
+ages[c(2, 4)]
+print(ages)
+```
+
+# c. Access all but the 4th and 12th element is not included. Write the R script and its output.
+```{r}
+ages[-c(4, 12)]
+print(ages)
+```
+
+# 4. *Create a vector x <- c("first"=3, "second"=0, "third"=9). Then named the
+vector, names(x).
+```{r}
+x <- c("first" = 3, "second" = 0, "third" = 9)
+print(x)
+```
+
+# a. Print the results. Then access x[c("first", "third")].
+Describe the output.
+```{r}
+result <- x[c("first", "third")]
+print(result)
+```
+
+# 5. Create a sequence x from -3:2.
+```{r}
+x <--3:2
+print(x)
+```
+
+# a. Modify 2nd element and change it to 0;
+```{r}
+x[2] <- 0
+x
+```
+
+
+# 6. *The following data shows the diesel fuel purchased by Mr. Cruz. Month Jan Feb March Apr May June Price per liter (PhP) 52.50 57.25 60.00 65.00 74.25 54.00 Purchase–quantity(Liters) 25 30 40 50 10 45
+
+# a. Create a data frame for month, price per liter (php) and purchase-quantity (liter). Write the R scripts and its output.
+
+```{r}
+months <- c("Jan", "Feb", "Mar", "Apr", "May", "Jun")
+price_per_liter <- c(52.50, 57.25, 60.00, 65.00, 74.25, 54.00)
+purchase_quantity <- c(25, 30, 40, 50, 10, 45)
+
+fuel_data <- data.frame(Month = months,
+                         Price_per_liter = price_per_liter,
+                         Purchase_quantity = purchase_quantity)
+
+print(fuel_data)
+```
+
+# b. What is the average fuel expenditure of Mr. Cruz from Jan to June? Note: Use ‘weighted.mean(liter, purchase)‘. Write the R scripts and its output.
+
+```{r}
+# Calculate the total expenditure for each month
+expenditure <- price_per_liter * purchase_quantity
+
+# Calculate the average fuel expenditure using weighted.mean
+average_expenditure <- weighted.mean(price_per_liter, purchase_quantity)
+
+# Print the average fuel expenditure
+print(average_expenditure)
+```
+
+# 7. R has actually lots of built-in datasets. For example, the rivers data “gives the lengths (in miles) of 141 “major” rivers in North America, as compiled by the US Geological Survey”.
+
+# a. Type “rivers” in your R console.
+# Create a vector data with 7 elements, containing the number of elements (length) in rivers, their sum (sum), mean (mean), median(median), variance(var), standard deviation(sd), minimum (min) and maximum (max). data <- c(length(rivers), sum(rivers), mean(rivers), median(rivers), var(rivers), sd(rivers), min(rivers), max(rivers))
+
+```{r}
+data <- c(length(rivers),    # Number of elements
+           sum(rivers),       # Sum of lengths
+           mean(rivers),      # Mean of lengths
+           median(rivers),    # Median of lengths
+           var(rivers),       # Variance of lengths
+           sd(rivers),        # Standard deviation of lengths
+           min(rivers),       # Minimum length
+           max(rivers))       # Maximum length
+
+# Print the vector
+print(data)
+```
+
+
+# 8. The table below gives the 25 most powerful celebrities and their annual pay as ranked by the editions of Forbes magazine and as listed on the Forbes.com website.
+
+# a. Create vectors according to the above table. Write the R scripts and its output.
+
+```{r}
+# Creating vectors
+names <- c("Tom Cruise", "Rolling Stones", "Oprah Winfrey", "U2", "Tiger Woods", "Steven Spielberg", "Howard Stern", "50 Cent", "Cast of the Sopranos", "Dan Brown", "Bruce Springsteen", "Donald Trump", "Muhammad Ali", "Paul McCartney", "George Lucas", "Elton John", "David Letterman", "Phil Mickelson", "J.K Rowling", "Bradd Pitt", "Peter Jackson", "Dr. Phil McGraw", "Jay Lenon", "Celine Dion", "Kobe Bryant")
+power_ranking <- 1:25
+annual_pay <- c(67, 90, 225, 110, 90, 332, 302, 41, 52, 88, 
+                55, 44, 55, 40, 233, 34, 40, 47, 75, 25, 
+                39, 45, 32, 40, 31)
+
+celebrity_data <- data.frame(Name = names, 
+                             Power_Ranking = power_ranking, 
+                             Annual_Pay = annual_pay)
+
+print(celebrity_data)
+```
+
+
+# b. Modify the power ranking and pay of J.K. Rowling. Change power ranking to 15 and pay to 90. Write the R scripts and its output. 
+
+```{r}
+# Modify Power_Ranking and Annual_Pay for J.K. Rowling
+celebrity_data$Power_Ranking[celebrity_data$Name == "J.K. Rowling"] <- 15
+celebrity_data$Annual_Pay[celebrity_data$Name == "J.K. Rowling"] <- 90
+
+# Print the updated dataframe
+print("Updated Data:")
+print(celebrity_data)
+```
+
+# c. Create an excel file from the table above and save it as csv file(PowerRanking). Import the csv file into the RStudio. What is the R script?
+
+```{r}
+# Save the dataframe as a CSV file
+write.csv(celebrity_data, "PowerRanking.csv", row.names = FALSE)
+
+# Import the CSV file into R
+imported_data <- read.csv("PowerRanking.csv")
+
+# Print the imported data
+print(imported_data)
+```
+
+# d. Access the rows 10 to 20 and save it as Ranks.RData. Write the R script and its output.
+
+```{r}
+selected_rows <- celebrity_data[10:20, ]
+
+save(selected_rows, file = "Ranks.RData")
+```
+
+# e. Describe its output.
+# The output from the print(selected_rows) command will display a subset of the original data frame containing only rows 10 to 20, showing the corresponding names, power rankings, and annual pay for those celebrities. This allows you to view details about specific high-ranking individuals from the list.
+
+
+# 9a. Import the Excel file
+```{r}
+library(readxl)
+data <- read_excel("hotels-vienna.xlsx")
+```
+
+# 9b. Check dimensions
+```{r}
+dimensions <- dim(data)
+print(dimensions)
+```
+
+# 9c. Select specific columns
+```{r}
+library(dplyr)
+selected_data <- data %>%
+select(country, neighbourhood, price, stars, accommodation_type, rating)
+```
+
+# 9d. Save the data
+```{r}
+save(selected_data, file = "new.RData")
+```
+
+# 9e. Load the saved data and display rows
+load("new.RData")
+head(selected_data)  
+tail(selected_data)
+
+# 10. Create a list of ten (10) vegetables you ate during your lifetime. If none, just list down.
+
+# a. Write the R scripts and its output.
+{r}
+
