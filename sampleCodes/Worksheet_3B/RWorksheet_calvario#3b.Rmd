@@ -180,3 +180,5 @@ print(siblings_gte_5)
 # The bar graph titled "Sentiments of Tweets Per Day" provides a visual representation of tweet sentiments over the week from July 14 to July 21, 2020. The sentiments are classified into three categories: negative (red), neutral (orange), and positive (blue).
 # The data indicates that negative sentiments were the most prevalent throughout the week, peaking on July 15 and July 20, when they surpassed 4,000 tweets. This suggests an increase in negative discussions or reactions on social media during these days. Neutral sentiments are visible but consistently lower than negative ones, reflecting a more reserved tone in some tweets. Conversely, positive sentiments were the least frequent, indicating that optimistic responses were uncommon during this period.
 # In conclusion, the graph depicts a timeframe marked by a significant presence of negativity in social media interactions, with a notable scarcity of positive or neutral sentiments. This insight could be valuable for understanding public reactions to particular events or trending topics during this timeframe.
+
+# talaka man ni man
