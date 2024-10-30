@@ -1,0 +1,152 @@
+---
+title: "RWorksheet_calvario#4b.Rmd"
+author: "Jolien"
+date: "2024-10-30"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# 1. Using the for loop, create an R script that will display a 5x5 matrix as shown in Figure 1. It must contain vectorA = [1,2,3,4,5] and a 5 x 5 zero matrix.
+
+```{r}
+vectorA <- c(1, 2, 3, 4, 5)
+
+zero_matrix <- matrix(0, nrow = 5, ncol = 5)
+
+for (i in 1:5) {
+  for (j in 1:5) {
+    zero_matrix[i, j] <- abs(vectorA[i] - vectorA[j])
+  }
+}
+
+zero_matrix
+```
+
+# 2. Print the string "*" using for() function.
+
+```{r}
+n <- 5
+
+for (i in 1:n) {
+  output <- paste(rep("*", i), collapse = " ")
+  cat(output, "\n")
+}
+
+```
+# 3. Get an input from the user to print the Fibonacci sequence starting from the 1st input up to 500. Use repeat and break statements. Write the R Scripts and its output.
+
+```{r eval = FALSE}
+start_value <- as.numeric(readline(prompt = "Enter a starting number for the Fibonacci sequence: "))
+ 
+a <- 0
+b <- 1
+
+cat("Fibonacci sequence starting from", start_value, "up to 500:\n")
+
+repeat {
+   next_fib <- a + b
+  
+  if (next_fib > 500) {
+    break
+  }
+  
+  if (next_fib >= start_value) {
+    cat(next_fib, "\n")
+  }
+   a <- b
+   b <- next_fib
+}
+```
+
+# 4. Import the dataset as shown in Figure 1 you have created previously.
+
+# a. What is the R script for importing an excel or a csv file? Display the first 6 rows of the dataset? Show your codes and its result
+
+```{r}
+data <- read.csv("shoe_size.csv")
+
+head(data)
+```
+
+# b. Create a subset for gender(female and male). How many observations are there in Male? How about in Female? Write the R scripts and its output.
+
+```{r}
+male_data <- subset(data, Gender == "Male")
+female_data <- subset(data, Gender == "Female")
+
+num_male <- nrow(male_data)
+num_female <- nrow(female_data)
+
+cat("Number of Male observations:", num_male, "\n")
+cat("Number of Female observations:", num_female, "\n")
+
+```
+
+# c. Create a graph for the number of males and females for Household Data. Use plot(), chart type = barplot. Make sure to place title, legends, and colors. Write the R scripts and its result.
+
+```{r}
+gender_counts <- table(data$Gender)
+
+barplot(gender_counts, 
+        main = "Number of Males and Females in Household Data", 
+        xlab = "Gender", 
+        ylab = "Number of Observations", 
+        col = c("lavender", "pink"), 
+        beside = TRUE)
+
+legend("topright", 
+       legend = names(gender_counts), 
+       fill = c("lavender", "pink"))
+```
+
+# 5. The monthly income of Dela Cruz family was spent on the following:
+
+# a. 
+
+```{r}
+expenses <- c(60, 10, 5, 25)
+labels <- c("Food", "Electricity", "Savings", "Miscellaneous")
+
+pie(expenses, 
+    labels = labels, 
+    main = "Monthly Income Distribution of Dela Cruz Family", 
+    col = rainbow(length(expenses)))
+
+percentages <- round(expenses / sum(expenses) * 100, 1)
+labels_with_percentages <- paste(labels, percentages, "%")
+pie(expenses, 
+    labels = labels_with_percentages, 
+    main = "Monthly Income Distribution of Dela Cruz Family", 
+    col = rainbow(length(expenses)))
+```
+
+# 6. Use the iris dataset.
+
+# a. 
+
+```{r}
+data(iris)
+     
+str(iris)
+```
+# b. 
+
+```{r}
+mean_values <- colMeans(iris[, 1:4])
+mean_values
+```
+# c.
+
+```{r}
+species_counts <- table(iris$Species)
+
+pie(species_counts, 
+    main = "Species Distribution in Iris Dataset", 
+    col = c("lavender", "beige", "lightpink"),
+    labels = paste(names(species_counts), species_counts))
+ 
+legend("topright", legend = names(species_counts), fill = c("lavender", "beige", "lightpink"))
+```
