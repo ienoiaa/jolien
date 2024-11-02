@@ -64,8 +64,8 @@ repeat {
 # 4. Import the dataset as shown in Figure 1 you have created previously.
 
 # a. What is the R script for importing an excel or a csv file? Display the first 6 rows of the dataset? Show your codes and its result
-
 ```{r}
+
 data <- read.csv("shoe_size.csv")
 
 head(data)
@@ -150,3 +150,42 @@ pie(species_counts,
  
 legend("topright", legend = names(species_counts), fill = c("lavender", "beige", "lightpink"))
 ```
+
+# d.
+
+```{r}
+setosa_subset <- iris[iris$Species == "setosa", ]
+versicolor_subset <- iris[iris$Species == "versicolor", ]
+virginica_subset <- iris[iris$Species == "virginica", ]
+
+setosa_last_six <- tail(setosa_subset, 6)
+versicolor_last_six <- tail(versicolor_subset, 6)
+virginica_last_six <- tail(virginica_subset, 6)
+
+print("Last six rows of Setosa:")
+print(setosa_last_six)
+print("Last six rows of Versicolor:")
+print(versicolor_last_six)
+print("Last six rows of Virginica:")
+print(virginica_last_six)
+```
+
+# e.
+
+```{r}
+iris$Species <- as.factor(iris$Species)
+
+plot(iris$Sepal.Length, iris$Sepal.Width,
+     col = iris$Species,
+     pch = 19,
+     main = "Iris Dataset",
+     sub = "Sepal Width and Length",
+     xlab = "Sepal Length",
+     ylab = "Sepal Width")
+
+legend("topright", legend = levels(iris$Species), col = 1:3, pch = 19)
+```
+
+# f. Interpret the result.
+
+#  The resulting plot visually displays the relationship between sepal length and sepal width for the different species of iris. Each species will appear in distinct colors, allowing for easy visual differentiation. This can help in understanding how sepal dimensions vary among the species.You may observe clustering of points by species, indicating differences in sepal dimensions that could be useful for classification or further analysis. For instance, Setosa typically has smaller sepals compared to the other two species.
