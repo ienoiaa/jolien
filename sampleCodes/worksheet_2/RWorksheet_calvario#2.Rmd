@@ -1,9 +1,11 @@
 ---
----
 title: "RWorksheet_calvario#2.R."
 author: "Jolien"
 date: "2024-09-25"
-output: pdf_document
+output:
+  html_document:
+    df_print: paged
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -189,40 +191,74 @@ save(selected_rows, file = "Ranks.RData")
 ```
 
 # e. Describe its output.
+
 # The output from the print(selected_rows) command will display a subset of the original data frame containing only rows 10 to 20, showing the corresponding names, power rankings, and annual pay for those celebrities. This allows you to view details about specific high-ranking individuals from the list.
 
 
 # 9a. Import the Excel file
+
 ```{r}
 library(readxl)
-data <- read_excel("hotels-vienna.xlsx")
+hotels_vienna <- read_excel("hotels-vienna.xlsx")
+head(hotels_vienna)
 ```
 
 # 9b. Check dimensions
+
 ```{r}
 dimensions <- dim(data)
 print(dimensions)
 ```
 
 # 9c. Select specific columns
-```{r}
-library(dplyr)
-selected_data <- data %>%
-select(country, neighbourhood, price, stars, accommodation_type, rating)
-```
 
+```{r}
+# Select the specified columns
+selected_columns <- hotels_vienna[ c("country", "neighbourhood", "price", "stars", "accommodation_type", "rating")]
+# View the first few rows of the selected columns
+head(selected_columns)
+```
+ 
+ 
 # 9d. Save the data
 ```{r}
-save(selected_data, file = "new.RData")
+save(hotels_vienna, file = "new.RData")
 ```
 
 # 9e. Load the saved data and display rows
+```{r}
 load("new.RData")
 head(selected_data)  
 tail(selected_data)
+```
 
 # 10. Create a list of ten (10) vegetables you ate during your lifetime. If none, just list down.
 
 # a. Write the R scripts and its output.
-{r}
+```{r}
+vegetables <- c("Carrot", "Broccoli", "Spinach", "Tomato", "Cucumber", 
+                "Bell Pepper", "Zucchini", "Eggplant", "Lettuce", "Radish")
+vegetables
+```
+# b. Add 2 additional vegetables after the last vegetables in the list. What is the R script and its output?
 
+```{r}
+vegetables <- c(vegetables, "Cauliflower", "Asparagus")
+vegetables
+```
+# c. Add 4 additional vegetables after index 5. How many datapoints does your vegetable list have? What is the R script and its output?
+
+```{r}
+vegetables <- append(vegetables, c("Kale", "Beetroot", "Peas", "Turnip"), after = 5)
+vegetables
+```
+
+
+# d. Remove the vegetables in index 5, 10, and 15. How many vegetables were left? Write the codes and its output.
+
+```{r}
+vegetables <- vegetables[-c(5, 10, 15)]
+vegetables
+length(vegetables)
+```
+# done, commit ka please.
